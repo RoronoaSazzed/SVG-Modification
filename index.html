@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Modification</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #952f80;
+      }
+
+      .parentDiv {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      .wrapper {
+        width: 100%;
+        max-width: 600px;
+      }
+
+      #mid-bird,
+      #top-bird,
+      #bottom-bird {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: stretch 3s ease infinite alternate;
+      }
+
+      @keyframes stretch {
+        0%,
+        25% {
+          transform: scaleX(1);
+        }
+
+        75%,
+        100% {
+          transform: scaleX(1.1);
+        }
+      }
+
+      #right,
+      #right_2,
+      #right_3 {
+        transform-box: fill-box;
+        transform-origin: bottom left;
+        animation: rightWing 3s ease-out infinite alternate;
+      }
+
+      #right_2 {
+        animation-delay: 0.2s;
+      }
+
+      #right_3 {
+        animation-delay: 0.25s;
+      }
+
+      @keyframes rightWing {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        20% {
+          transform: rotate(10deg);
+        }
+
+        40% {
+          transform: rotate(5deg);
+        }
+
+        65% {
+          transform: rotate(-5deg);
+        }
+
+        80% {
+          transform: rotate(7deg);
+        }
+
+        90% {
+          transform: rotate(-7deg);
+        }
+
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      #left,
+      #left_2,
+      #left_3 {
+        transform-box: fill-box;
+        transform-origin: bottom right;
+        animation: leftWing 3s ease-out infinite alternate;
+      }
+
+      #left_2 {
+        animation-delay: 0.15s;
+      }
+
+      #left_3 {
+        animation-delay: 0.1s;
+      }
+
+      @keyframes leftWing {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        20% {
+          transform: rotate(-10deg);
+        }
+
+        40% {
+          transform: rotate(-5deg);
+        }
+
+        65% {
+          transform: rotate(5deg);
+        }
+
+        80% {
+          transform: rotate(-7deg);
+        }
+
+        90% {
+          transform: rotate(7deg);
+        }
+
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      #heart-line {
+        stroke-dasharray: 7px;
+        animation: lineInOut 0.5s infinite alternate;
+      }
+
+      @keyframes lineInOut {
+        0%,
+        25% {
+          animation-timing-function: ease-out;
+          stroke-dasharray: 7px;
+        }
+
+        75%,
+        100% {
+          animation-timing-function: ease-out;
+          stroke-dasharray: 8.5px;
+        }
+      }
+
+      #bottom-line {
+        stroke-dasharray: 112.5790023803711px 12px;
+        stroke-dashoffset: 112.5790023803711px;
+        animation: topInOut 15s linear infinite reverse;
+      }
+      #center-line {
+        stroke-dasharray: 112.5790023803711px 12px;
+        stroke-dashoffset: 112.5790023803711px;
+        animation: topInOut 15s linear infinite reverse;
+      }
+      #top-line {
+        stroke-dasharray: 112.5790023803711px 12px;
+        animation: topInOut 15s linear infinite reverse;
+      }
+
+      @keyframes topInOut {
+        0% {
+          stroke-dashoffset: 112.5790023803711px;
+        }
+
+        100% {
+          stroke-dashoffset: 0px;
+        }
+      }
+
+      #top-cloud {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: sway_2 6s ease-out infinite alternate;
+      }
+
+      @keyframes sway_2 {
+        0% {
+          transform: scale(1);
+        }
+
+        10% {
+          transform: scale(1.05);
+        }
+
+        20% {
+          transform: scaleY(1.02);
+        }
+
+        30% {
+          transform: scaleX(1.05);
+        }
+
+        40% {
+          transform: scaleX(1.07);
+        }
+
+        50% {
+          transform: scale(1.01);
+        }
+
+        60% {
+          transform: scaleY(1.02);
+        }
+
+        70% {
+          transform: scale(1);
+        }
+
+        80% {
+          transform: scaleX(1.03);
+        }
+
+        90% {
+          transform: scaleX(0.97);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      #center-cloud {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: sway 3s ease-out infinite alternate;
+      }
+
+      @keyframes sway {
+        0% {
+          transform: scale(1);
+        }
+
+        10% {
+          transform: scaleX(1.02);
+        }
+
+        20% {
+          transform: scaleY(1.01);
+        }
+
+        30% {
+          transform: scale(0.98);
+        }
+
+        40% {
+          transform: scaleX(1.04);
+        }
+
+        50% {
+          transform: scaleY(1.05);
+        }
+
+        60% {
+          transform: scaleX(0.99);
+        }
+
+        70% {
+          transform: scaleY(1);
+        }
+
+        80% {
+          transform: scaleX(1.03);
+        }
+
+        90% {
+          transform: scaleY(1.06);
+        }
+
+        100% {
+          transform: scale(0.99);
+        }
+      }
+
+      #sun #outer-circle {
+        stroke-dasharray: 60% 6 2;
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: turn 6s linear infinite;
+      }
+
+      @keyframes turn {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      #heart {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: heartBeat 0.5s infinite alternate;
+      }
+
+      @keyframes heartBeat {
+        0%,
+        25% {
+          animation-timing-function: ease-out;
+          transform: scale(1);
+        }
+
+        75%,
+        100% {
+          animation-timing-function: ease-out;
+          transform: scale(0.95);
+        }
+      }
+
+      #mail {
+        transform-box: fill-box;
+        transform-origin: center bottom;
+        animation: mailBeat 0.5s infinite 0.1s alternate;
+      }
+
+      @keyframes mailBeat {
+        0%,
+        25% {
+          animation-timing-function: ease-out;
+          transform: scaleY(1);
+        }
+
+        75%,
+        100% {
+          animation-timing-function: ease-out;
+          transform: scaleY(0.98);
+        }
+      }
+
+      #tree1 {
+        transform-box: fill-box;
+        transform-origin: center bottom;
+        animation: sway 5s ease-out 0.1s infinite alternate;
+      }
+
+      #tree2 {
+        transform-box: fill-box;
+        transform-origin: center bottom;
+        animation: sway 4s ease-out 0.25s infinite alternate;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parentDiv">
+      <div class="wrapper">
+        <svg
+          width="100%"
+          min-height="0"
+          viewBox="0 0 200 211"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="art">
+            <path
+              id="top-cloud"
+              d="M98.8134 45.6431C100.163 44.1161 102.464 43.1093 104.237 44.1071C105.353 44.7325 106.011 46.0165 107.17 46.5636C107.889 46.8229 108.669 46.8615 109.411 46.6744C110.152 46.4873 110.82 46.0831 111.33 45.5135C112.334 44.3554 113.128 43.0308 113.675 41.5994C114.93 38.9441 116.495 36.2969 118.943 34.6566C121.391 33.0163 124.904 32.7221 127.135 34.6566C129.826 36.9475 129.835 41.495 132.732 43.5088C134.964 45.0537 138.156 44.3762 140.284 42.7187C142.412 41.0613 143.744 38.5446 144.947 36.1233C147.438 31.2023 149.886 26.2211 153.199 21.813C156.512 17.404 160.777 13.534 165.967 11.6418C171.158 9.7495 177.274 10.0536 181.729 13.2821C186.452 16.7013 188.589 22.6975 189.42 28.4778C191.15 40.3496 188.381 52.6299 182.819 63.252C180.76 67.1922 178.139 71.0622 174.22 73.1713C170.302 75.2804 164.773 74.8629 162.109 71.2709C160.457 69.0142 160.215 65.9945 158.727 63.6164C157.772 62.2231 156.488 61.0872 154.989 60.3097C153.491 59.5332 151.824 59.1397 150.137 59.1642C146.754 59.2564 143.473 60.3464 140.708 62.2973C138.51 63.755 136.097 65.6382 133.545 64.9787C130.604 64.2148 129.54 60.5967 127.3 58.5308C124.912 56.3263 121.383 56.0573 118.138 55.9277C112.326 55.7135 106.507 55.6209 100.681 55.6496C96.2786 55.6496 85.976 56.9516 86.3656 53.0025C86.668 50.816 90.9843 53.3417 93.4668 51.7095C96.7025 49.5833 96.365 48.3946 98.8134 45.6431V45.6431Z"
+              fill="#653580"
+            />
+            <path
+              id="center-cloud"
+              d="M32.6013 104.587C29.2109 112.319 31.1653 122.612 38.2592 127.151C41.6676 129.337 45.7941 130.04 49.5651 131.489C53.337 132.939 57.135 135.655 57.8432 139.656C58.7088 144.437 54.7992 148.785 50.6295 151.268C46.4599 153.749 41.6244 155.338 38.3204 158.896C36.4582 161.034 35.2146 163.64 34.7237 166.432C34.2328 169.224 34.5132 172.098 35.5346 174.742C36.6152 177.362 38.2893 179.694 40.425 181.557C42.5585 183.416 45.0958 184.752 47.8357 185.46C52.7755 186.771 58.0519 186.137 63.017 187.309C67.982 188.48 72.5323 191.526 76.9187 194.312C81.3043 197.098 86.0363 199.805 91.2263 200.248C96.4172 200.691 102.213 198.26 104.09 193.383C105.25 190.381 104.808 186.9 106.166 183.985C108.052 179.95 112.896 178.118 117.334 178.049C121.772 177.98 126.132 179.247 130.561 179.568C136.772 180.019 143.242 178.492 148.13 174.63C153.018 170.768 156.089 164.416 155.318 158.219C153.771 145.852 138.814 138.658 136.884 126.344C135.786 119.401 139.185 112.588 142.074 106.149C144.964 99.7097 147.429 92.2199 144.583 85.763C140.985 77.6145 130.206 74.9763 121.642 77.3283C113.078 79.6804 106.071 85.6514 98.8475 90.8405C91.6249 96.0296 83.2767 100.725 74.4272 99.9176C65.5778 99.1105 59.7732 90.5193 51.8065 89.7985C44.1852 89.1309 35.3439 98.2773 32.6013 104.587V104.587Z"
+              fill="#653580"
+            />
+            <path
+              id="mail"
+              d="M131.365 167.765H62.1604V113.899C62.1618 113.085 62.3535 112.283 62.72 111.557C63.0865 110.83 63.6177 110.2 64.2713 109.715L93.9599 87.7155C94.8553 87.046 95.9434 86.6841 97.0615 86.6841C98.1795 86.6841 99.2676 87.046 100.163 87.7155L129.298 109.689C129.944 110.178 130.468 110.81 130.826 111.536C131.185 112.263 131.37 113.062 131.365 113.872V167.765V167.765Z"
+              fill="#F5F5F5"
+            />
+            <path
+              id="heart"
+              d="M123.018 129.746C123.016 126.081 121.563 122.565 118.976 119.969C117.697 118.687 116.178 117.669 114.506 116.974C112.833 116.279 111.04 115.921 109.228 115.92C106.739 115.929 104.297 116.615 102.164 117.904C100.03 119.196 98.2863 121.042 97.1182 123.246C95.9446 121.034 94.192 119.184 92.0478 117.892C90.2027 116.78 88.1221 116.118 85.974 115.958C83.8258 115.799 81.6702 116.146 79.6811 116.973C78.0072 117.669 76.4869 118.687 75.2072 119.971C73.9276 121.255 72.9137 122.779 72.2236 124.455C71.5309 126.133 71.1744 127.93 71.1745 129.746C71.1728 131.794 71.631 133.816 72.5152 135.664C77.7924 147.909 97.0057 158.67 97.0057 158.67C97.0057 158.67 116.996 147.77 121.953 135.178C122.685 133.46 123.062 131.613 123.061 129.746H123.018V129.746Z"
+              fill="#E53F71"
+            />
+            <path
+              id="heart-line"
+              d="M77.2301 133.599C77.2301 133.537 77.2301 133.486 77.1608 133.434C76.598 132.285 76.3021 131.025 76.2952 129.746C76.2971 127.462 77.2029 125.272 78.8146 123.654C79.611 122.855 80.557 122.22 81.5987 121.787C82.6403 121.353 83.7572 121.129 84.8855 121.127"
+              stroke="#F5F5F5"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              id="bottom-line"
+              d="M14.2969 194.399H137.083"
+              stroke="#E53F71"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              id="center-line"
+              d="M74.5748 186.198H175.872"
+              stroke="#E53F71"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              id="top-line"
+              d="M45.8193 167.218H147.111"
+              stroke="#E53F71"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              id="tree2"
+              d="M168.416 110.566C167.377 111.36 166.59 112.439 166.151 113.671C165.712 114.903 165.64 116.236 165.942 117.509C166.634 120.217 168.969 122.282 169.61 124.998C170.536 128.894 167.741 132.653 164.818 135.413C161.893 138.172 158.468 140.827 157.56 144.724C156.279 150.218 160.924 155.711 166.331 157.264C169.624 158.137 173.106 157.961 176.294 156.763C179.486 155.562 182.226 153.399 184.134 150.573C185.931 147.67 186.784 144.282 186.578 140.875C186.372 137.467 185.116 134.207 182.983 131.542C180.561 128.643 176.928 126.127 176.841 122.343C176.841 120.034 178.2 118.003 178.71 115.704C179.982 110.098 172.24 107.755 168.416 110.566V110.566Z"
+              fill="#653580"
+            />
+            <path
+              id="tree2line"
+              d="M171.166 151.016V167.218"
+              stroke="#E53F71"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <g id="mid-bird">
+              <path
+                id="right"
+                d="M73.6138 87.8379C73.6138 84.4475 75.3036 82.7523 78.6832 82.7523"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                id="left"
+                d="M68.5444 82.7523C71.9366 82.7523 73.6138 84.488 73.6138 87.8379"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <g id="top-bird">
+              <path
+                id="right_2"
+                d="M121.953 19.7471C121.953 16.3549 123.631 14.6705 127.014 14.6705"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                id="left_2"
+                d="M116.884 14.6705C120.267 14.6705 121.953 16.354 121.953 19.7471"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <g id="bottom-bird">
+              <path
+                id="right_3"
+                d="M153.839 126.595C153.839 123.205 155.529 121.51 158.909 121.51"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                id="left_3"
+                d="M148.779 121.51C152.161 121.51 153.839 123.202 153.839 126.595"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <path
+              id="tree1"
+              d="M20.1536 125.796C18.3279 125.015 15.3181 126.482 14.1763 129.216C13.1289 131.732 14.0809 133.85 14.574 135.916C15.3559 139.787 14.7751 143.809 12.9301 147.301C11.8575 149.375 10.3954 151.189 10.0148 153.307C9.86308 154.243 9.91931 155.201 10.1795 156.113C10.4396 157.025 10.8973 157.868 11.5201 158.583C12.8053 159.908 14.4403 160.841 16.235 161.273C18.1145 161.863 20.1082 161.991 22.0477 161.647C24.3685 161.204 26.4207 159.863 27.7578 157.915C29.9289 154.547 28.977 150.539 27.9557 147.068C26.615 142.477 25.205 137.981 24.02 133.399C23.2327 130.431 22.6973 126.812 20.1536 125.796Z"
+              fill="#653580"
+            />
+            <path
+              id="tree1line"
+              d="M19.2538 167.218V155.937"
+              stroke="#E53F71"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <g id="sun">
+              <path
+                id="outer-circle"
+                d="M49.539 72.9886C61.894 72.9886 71.9096 62.9416 71.9096 50.5469C71.9096 38.1523 61.8949 28.1043 49.539 28.1043C37.1849 28.1043 27.1693 38.1523 27.1693 50.5469C27.1693 62.9416 37.1831 72.9877 49.539 72.9877V72.9886Z"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                id="center"
+                d="M49.5399 55.6325C52.3382 55.6325 54.6084 53.3561 54.6084 50.5469C54.6084 47.7378 52.3391 45.4613 49.5399 45.4613C46.7397 45.4613 44.4705 47.7378 44.4705 50.5469C44.4705 53.3552 46.7397 55.6325 49.539 55.6325H49.5399Z"
+                fill="#E53F71"
+              />
+              <path
+                id="inner-circle"
+                d="M49.5399 64.311C57.1161 64.311 63.259 58.1483 63.259 50.5469C63.259 42.9455 57.117 36.7828 49.539 36.7828C41.9628 36.7828 35.8199 42.9455 35.8199 50.5469C35.8199 58.1483 41.961 64.311 49.5399 64.311Z"
+                stroke="#E53F71"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </body>
+</html>
